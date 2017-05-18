@@ -23,9 +23,10 @@ public class LiteralPetCreator extends PetCreator {
         System.out.println(types);
     }
 
+    @Override
     public List<Class<? extends Pet>> types() {
         return types;
     }
 } /* Output:
-[class typeinfo.pets.Mutt, class typeinfo.pets.Pug, class typeinfo.pets.EgyptianMau, class typeinfo.pets.Manx, class typeinfo.pets.Cymric, class typeinfo.pets.Rat, class typeinfo.pets.Mouse, class typeinfo.pets.Hamster]
-*///:~
+        [class typeinfo.pets.Mutt, class typeinfo.pets.Pug, class typeinfo.pets.EgyptianMau, class typeinfo.pets.Manx, class typeinfo.pets.Cymric, class typeinfo.pets.Rat, class typeinfo.pets.Mouse, class typeinfo.pets.Hamster]
+        *///:~

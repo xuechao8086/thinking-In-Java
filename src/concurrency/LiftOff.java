@@ -16,9 +16,10 @@ public class LiftOff implements Runnable {
 
     public String status() {
         return "#" + id + "(" +
-                (countDown > 0 ? countDown : "Liftoff!") + "), ";
+                (countDown > 0 ? countDown : "Liftoff!") + "), " + "\n";
     }
 
+    @Override
     public void run() {
         while (countDown-- > 0) {
             System.out.print(status());

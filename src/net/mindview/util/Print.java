@@ -7,7 +7,8 @@ import java.io.PrintStream;
 
 public class Print {
     // Print with a newline:
-    public static void print(Object obj) {
+    public static void
+    print(Object obj) {
         System.out.println(obj);
     }
 

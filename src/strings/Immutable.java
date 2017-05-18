@@ -17,6 +17,8 @@ public class Immutable {
     }
 } /* Output:
 howdy
+
 HOWDY
 howdy
 *///:~
+

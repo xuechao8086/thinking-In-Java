@@ -16,13 +16,14 @@ enum Category {
     ITEM_SELECTION(TOOTHPASTE, CHIPS, SODA, SOAP),
     QUIT_TRANSACTION(ABORT_TRANSACTION),
     SHUT_DOWN(STOP);
-    private static EnumMap<Input, Category> categories =
-            new EnumMap<Input, Category>(Input.class);
+    private static EnumMap<Input, Category> categories = new EnumMap<>(Input.class);
 
     static {
-        for (Category c : Category.class.getEnumConstants())
-            for (Input type : c.values)
+        for (Category c : Category.class.getEnumConstants()) {
+            for (Input type : c.values) {
                 categories.put(type, c);
+            }
+        }
     }
 
     private Input[] values;
@@ -44,23 +45,28 @@ public class VendingMachine {
     static void run(Generator<Input> gen) {
         while (state != State.TERMINAL) {
             state.next(gen.next());
-            while (state.isTransient)
+            while (state.isTransient) {
                 state.next();
+            }
             state.output();
         }
     }
 
     public static void main(String[] args) {
         Generator<Input> gen = new RandomInputGenerator();
-        if (args.length == 1)
+        if (args.length == 1) {
             gen = new FileInputGenerator(args[0]);
+        }
         run(gen);
     }
 
-    enum StateDuration {TRANSIENT} // Tagging enum
+    enum StateDuration {
+        TRANSIENT
+    }
 
     enum State {
         RESTING {
+            @Override
             void next(Input input) {
                 switch (Category.categorize(input)) {
                     case MONEY:
@@ -69,11 +75,13 @@ public class VendingMachine {
                         break;
                     case SHUT_DOWN:
                         state = TERMINAL;
+                        break;
                     default:
                 }
             }
         },
         ADDING_MONEY {
+            @Override
             void next(Input input) {
                 switch (Category.categorize(input)) {
                     case MONEY:
@@ -81,20 +89,23 @@ public class VendingMachine {
                         break;
                     case ITEM_SELECTION:
                         selection = input;
-                        if (amount < selection.amount())
+                        if (amount < selection.amount()) {
                             print("Insufficient money for " + selection);
-                        else state = DISPENSING;
+                        }
+                        else { state = DISPENSING; }
                         break;
                     case QUIT_TRANSACTION:
                         state = GIVING_CHANGE;
                         break;
                     case SHUT_DOWN:
                         state = TERMINAL;
+                        break;
                     default:
                 }
             }
         },
         DISPENSING(StateDuration.TRANSIENT) {
+            @Override
             void next() {
                 print("here is your " + selection);
                 amount -= selection.amount();
@@ -102,6 +113,7 @@ public class VendingMachine {
             }
         },
         GIVING_CHANGE(StateDuration.TRANSIENT) {
+            @Override
             void next() {
                 if (amount > 0) {
                     print("Your change: " + amount);
@@ -111,6 +123,7 @@ public class VendingMachine {
             }
         },
         TERMINAL {
+            @Override
             void output() {
                 print("Halted");
             }
@@ -124,11 +137,18 @@ public class VendingMachine {
             isTransient = true;
         }
 
+        /**
+         * will be over ride
+         * @param input
+         */
         void next(Input input) {
             throw new RuntimeException("Only call " +
                     "next(Input input) for non-transient states");
         }
 
+        /**
+         * will be over ride
+         */
         void next() {
             throw new RuntimeException("Only call next() for " +
                     "StateDuration.TRANSIENT states");
@@ -142,6 +162,7 @@ public class VendingMachine {
 
 // For a basic sanity check:
 class RandomInputGenerator implements Generator<Input> {
+    @Override
     public Input next() {
         return Input.randomSelection();
     }
@@ -155,6 +176,7 @@ class FileInputGenerator implements Generator<Input> {
         input = new TextFile(fileName, ";").iterator();
     }
 
+    @Override
     public Input next() {
         if (!input.hasNext())
             return null;

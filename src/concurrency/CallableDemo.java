@@ -11,8 +11,15 @@ class TaskWithResult implements Callable<String> {
         this.id = id;
     }
 
+    @Override
     public String call() {
+        try {
+            TimeUnit.MINUTES.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "result of TaskWithResult " + id;
+
     }
 }
 
@@ -21,9 +28,10 @@ public class CallableDemo {
         ExecutorService exec = Executors.newCachedThreadPool();
         ArrayList<Future<String>> results =
                 new ArrayList<Future<String>>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++) {
             results.add(exec.submit(new TaskWithResult(i)));
-        for (Future<String> fs : results)
+        }
+        for (Future<String> fs : results) {
             try {
                 // get() blocks until completion:
                 System.out.println(fs.get());
@@ -35,6 +43,7 @@ public class CallableDemo {
             } finally {
                 exec.shutdown();
             }
+        }
     }
 } /* Output:
 result of TaskWithResult 0

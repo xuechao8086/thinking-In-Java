@@ -24,6 +24,8 @@ public class EnumClass {
             print(shrub);
         }
     }
+
+
 } /* Output:
 GROUND ordinal: 0
 -1 false false

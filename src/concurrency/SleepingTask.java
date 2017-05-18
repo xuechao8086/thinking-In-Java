@@ -2,18 +2,29 @@
 package concurrency; /* Added by Eclipse.py */
 // Calling sleep() to pause for a while.
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
+/**
+ * SleepingTask
+ *
+ * @author gumi.zxc
+ * @date 2016/10/31
+ */
 public class SleepingTask extends LiftOff {
     public static void main(String[] args) {
-        ExecutorService exec = Executors.newCachedThreadPool();
-        for (int i = 0; i < 5; i++)
-            exec.execute(new SleepingTask());
-        exec.shutdown();
+//        ExecutorService exec = Executors.newCachedThreadPool();
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2,
+                100,
+                10,
+                TimeUnit.MINUTES,
+                new ArrayBlockingQueue<Runnable>(3), new ThreadPoolExecutor.DiscardOldestPolicy());
+        for (int i = 0; i < 5; i++) {
+            threadPoolExecutor.execute(new SleepingTask());
+        }
+        threadPoolExecutor.shutdown();
     }
 
+    @Override
     public void run() {
         try {
             while (countDown-- > 0) {

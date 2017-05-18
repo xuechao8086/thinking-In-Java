@@ -17,6 +17,11 @@ public class Shapes {
         // Make polymorphic method calls:
         for (Shape shp : s)
             shp.draw();
+
+
+//        for(Shape r: gen.next()) {
+//            r.draw();
+//        }
     }
 } /* Output:
 Triangle.draw()

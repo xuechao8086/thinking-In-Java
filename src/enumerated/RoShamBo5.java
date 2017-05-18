@@ -2,6 +2,8 @@
 // Multiple dispatching using an EnumMap of EnumMaps.
 package enumerated;
 
+import com.oracle.jrockit.jfr.ValueDefinition;
+
 import java.util.EnumMap;
 
 import static enumerated.Outcome.*;
@@ -34,6 +36,7 @@ enum RoShamBo5 implements Competitor<RoShamBo5> {
         RoShamBo.play(RoShamBo5.class, 20);
     }
 
+    @Override
     public Outcome compete(RoShamBo5 it) {
         return table.get(this).get(it);
     }
