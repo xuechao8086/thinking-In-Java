@@ -3,6 +3,7 @@ package gumi.zxc;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.*;
+import java.util.function.Consumer;
 
 import javax.swing.*;
 
@@ -49,4 +50,6 @@ public class TestMethodReference {
     public void doSomethingTwo(ActionEvent actionEvent) {
         System.out.println("这个是方法引用实现2");
     }
+
+
 }
