@@ -37,6 +37,7 @@ public class TestMethodReference {
 
         /**
          * @see https://my.oschina.net/benhaile/blog/177148
+         * lambda test
          */
         list.forEach(p -> System.out.println(p));
     }
