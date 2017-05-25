@@ -9,6 +9,7 @@ public class Groundhog {
         number = n;
     }
 
+    @Override
     public String toString() {
         return "Groundhog #" + number;
     }

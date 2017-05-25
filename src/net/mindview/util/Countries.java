@@ -138,11 +138,14 @@ public class Countries {
 
     // Create a partial map of 'size' countries:
     static Map<String, String> select(final int size) {
-        return new FlyweightMap() {
+        Map<String, String> flyweightMap = new FlyweightMap() {
+            @Override
             public Set<Map.Entry<String, String>> entrySet() {
                 return new EntrySet(size);
             }
         };
+
+        return flyweightMap;
     }
 
     public static Map<String, String> capitals() {
@@ -165,17 +168,17 @@ public class Countries {
 
     public static void main(String[] args) {
         print(capitals(10));
-        print(names(10));
-        print(new HashMap<String, String>(capitals(3)));
-        print(new LinkedHashMap<String, String>(capitals(3)));
-        print(new TreeMap<String, String>(capitals(3)));
-        print(new Hashtable<String, String>(capitals(3)));
-        print(new HashSet<String>(names(6)));
-        print(new LinkedHashSet<String>(names(6)));
-        print(new TreeSet<String>(names(6)));
-        print(new ArrayList<String>(names(6)));
-        print(new LinkedList<String>(names(6)));
-        print(capitals().get("BRAZIL"));
+        //print(names(10));
+        //print(new HashMap<String, String>(capitals(3)));
+        //print(new LinkedHashMap<String, String>(capitals(3)));
+        //print(new TreeMap<String, String>(capitals(3)));
+        //print(new Hashtable<String, String>(capitals(3)));
+        //print(new HashSet<String>(names(6)));
+        //print(new LinkedHashSet<String>(names(6)));
+        //print(new TreeSet<String>(names(6)));
+        //print(new ArrayList<String>(names(6)));
+        //print(new LinkedList<String>(names(6)));
+        //print(capitals().get("BRAZIL"));
     }
 
     // Use AbstractMap by implementing entrySet()

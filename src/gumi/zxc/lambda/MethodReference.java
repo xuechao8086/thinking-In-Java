@@ -1,4 +1,4 @@
-package gumi.zxc;
+package gumi.zxc.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;

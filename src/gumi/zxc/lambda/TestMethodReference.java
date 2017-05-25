@@ -1,9 +1,8 @@
-package gumi.zxc;
+package gumi.zxc.lambda;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.*;
-import java.util.function.Consumer;
 
 import javax.swing.*;
 

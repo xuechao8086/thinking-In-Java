@@ -1,4 +1,4 @@
-package gumi.zxc;
+package gumi.zxc.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
-
-import containers.Test;
 
 /**
  * @see <a href="http://www.cnblogs.com/figure9/archive/2014/10/24/4048421.html">深入理解Java 8 Lambda（语言篇——lambda，方法引用，目标类型和默认方法）</a>
@@ -32,8 +30,8 @@ public class TestLambda {
     }
 
 
-    private Runnable runnableOne = () -> {System.out.println(this);};
-    private Runnable runnableTwo = () -> {System.out.println(toString());};
+    private Runnable runnableOne = () -> System.out.println(this);
+    private Runnable runnableTwo = () -> System.out.println(toString());
 
     @Override
     public String toString() {
