@@ -28,6 +28,7 @@ class Product {
         System.out.println(toString());
     }
 
+    @Override
     public String toString() {
         return id + ": " + description + ", price: $" + price;
     }

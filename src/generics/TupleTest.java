@@ -5,6 +5,7 @@ import net.mindview.util.FiveTuple;
 import net.mindview.util.FourTuple;
 import net.mindview.util.ThreeTuple;
 import net.mindview.util.TwoTuple;
+import org.jetbrains.annotations.NotNull;
 
 class Amphibian {
 }
@@ -18,6 +19,7 @@ public class TupleTest {
         return new TwoTuple<String, Integer>("hi", 47);
     }
 
+    @NotNull
     static ThreeTuple<Amphibian, String, Integer> g() {
         return new ThreeTuple<Amphibian, String, Integer>(
                 new Amphibian(), "hi", 47);

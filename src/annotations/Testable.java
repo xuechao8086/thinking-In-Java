@@ -12,4 +12,10 @@ public class Testable {
     void testExecute() {
         execute();
     }
+
+    public static void main(String[] args) {
+        Testable testable = new Testable();
+        testable.testExecute();
+    }
+
 } ///:~
