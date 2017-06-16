@@ -2,6 +2,8 @@
 package concurrency; /* Added by Eclipse.py */
 // One thread can reacquire the same lock.
 
+import java.util.concurrent.TimeUnit;
+
 import static net.mindview.util.Print.print;
 
 public class MultiLock {
@@ -12,11 +14,23 @@ public class MultiLock {
                 multiLock.f1(10);
             }
         }.start();
+        new Thread() {
+            public void run() {
+                multiLock.f1(20);
+            }
+        }.start();
     }
 
     public synchronized void f1(int count) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         if (count-- > 0) {
             print("f1() calling f2() with count " + count);
+            Thread.yield();
             f2(count);
         }
     }
@@ -24,6 +38,7 @@ public class MultiLock {
     public synchronized void f2(int count) {
         if (count-- > 0) {
             print("f2() calling f1() with count " + count);
+            Thread.yield();
             f1(count);
         }
     }
