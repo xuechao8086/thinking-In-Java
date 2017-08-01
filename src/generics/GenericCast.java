@@ -13,9 +13,9 @@ class FixedSizeStack<T> {
         storage[index++] = item;
     }
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     public T pop() {
-        return (T) storage[--index];
+        return (T)storage[--index];
     }
 }
 
@@ -23,10 +23,12 @@ public class GenericCast {
     public static final int SIZE = 10;
 
     public static void main(String[] args) {
-        FixedSizeStack<String> strings =
-                new FixedSizeStack<String>(SIZE);
-        for (String s : "A B C D E F G H I J".split(" "))
+        FixedSizeStack<String> strings = new FixedSizeStack<String>(SIZE);
+
+        for (String s : "A B C D E F G H I J".split(" ")) {
             strings.push(s);
+        }
+
         for (int i = 0; i < SIZE; i++) {
             String s = strings.pop();
             System.out.print(s + " ");

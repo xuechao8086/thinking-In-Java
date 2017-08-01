@@ -9,8 +9,10 @@ public class EvenGenerator extends IntGenerator {
         EvenChecker.test(new EvenGenerator());
     }
 
+    @Override
     public int next() {
         ++currentEvenValue; // Danger point here!
+        Thread.yield();
         ++currentEvenValue;
         return currentEvenValue;
     }

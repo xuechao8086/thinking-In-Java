@@ -18,6 +18,7 @@ class NullRobotProxyHandler implements InvocationHandler {
         nullName = type.getSimpleName() + " NullRobot";
     }
 
+    @Override
     public Object invoke(
             Object proxy, Method method, Object[] args)
             throws Throwable {
@@ -25,14 +26,17 @@ class NullRobotProxyHandler implements InvocationHandler {
     }
 
     private class NRobot implements Null, Robot {
+        @Override
         public String name() {
             return nullName;
         }
 
+        @Override
         public String model() {
             return nullName;
         }
 
+        @Override
         public List<Operation> operations() {
             return Collections.emptyList();
         }
@@ -52,10 +56,9 @@ public class NullRobot {
                 new SnowRemovalRobot("SnowBee"),
                 newNullRobot(SnowRemovalRobot.class)
         };
-        for (Robot bot : bots)
+        for (Robot bot : bots) {
             Robot.Test.test(bot);
-        Robot.Test.test(newNullRobot(SnowRemovalRobot.class));
-
+        }
     }
 } /* Output:
 Robot name: SnowBee

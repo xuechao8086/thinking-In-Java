@@ -3,6 +3,9 @@ package concurrency; /* Added by Eclipse.py */
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class EvenChecker implements Runnable {
     private final int id;
@@ -16,9 +19,11 @@ public class EvenChecker implements Runnable {
     // Test any type of IntGenerator:
     public static void test(IntGenerator gp, int count) {
         System.out.println("Press Control-C to exit");
-        ExecutorService exec = Executors.newCachedThreadPool();
-        for (int i = 0; i < count; i++)
+        //ExecutorService exec = Executors.newCachedThreadPool();
+        ExecutorService exec = new ThreadPoolExecutor(5, 5, 0L, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(16), new ThreadPoolExecutor.DiscardPolicy());
+        for (int i = 0; i < count; i++) {
             exec.execute(new EvenChecker(gp, i));
+        }
         exec.shutdown();
     }
 

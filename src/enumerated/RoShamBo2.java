@@ -20,6 +20,7 @@ public enum RoShamBo2 implements Competitor<RoShamBo2> {
         RoShamBo.play(RoShamBo2.class, 20);
     }
 
+    @Override
     public Outcome compete(RoShamBo2 it) {
         switch (it) {
             default:
