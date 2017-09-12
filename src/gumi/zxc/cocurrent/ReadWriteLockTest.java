@@ -2,6 +2,7 @@ package gumi.zxc.cocurrent;
 
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.*;
 /**
  * @author gumi.zxc
@@ -11,13 +12,28 @@ public class ReadWriteLockTest {
 
     public static void main(String[] args) {
         final TheData myData=new TheData(); // 这是各线程的共享数据
-        for(int i=0;i<3;i++){ // 开启3 个写线程
-            Runnable runnable = () -> {while (true) { myData.put(new Random().nextInt(100000));} };
+        for(int i=0;i<1;i++){ // 开启3 个写线程
+            Runnable runnable = () -> {
+                while (true) {
+                    myData.put(new Random().nextInt(100000));
+                    Thread.yield();
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (Exception e) {
+
+                    }
+
+                }
+            };
             runnable.run();
         }
 
         for(int i=0;i<3;i++){ // 开启3 个读线程
-            Runnable runnable = () -> {while (true) { myData.get(); }};
+            Runnable runnable = () -> {
+                while (true) {
+                    myData.get();
+                }
+            };
             runnable.run();
         }
 
@@ -36,6 +52,12 @@ class TheData{
             e.printStackTrace();
         } finally{
             rwl.readLock().unlock(); // 读锁解锁
+            try {
+                TimeUnit.MINUTES.sleep(1);
+            } catch (Exception e) {
+
+            }
+
         }
     }
     public void put(Object data){

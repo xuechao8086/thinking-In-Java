@@ -14,7 +14,7 @@ public enum OzWitch {
     private String description;
 
     // Constructor must be package or private access:
-    private OzWitch(String description) {
+    OzWitch(String description) {
         this.description = description;
     }
 
