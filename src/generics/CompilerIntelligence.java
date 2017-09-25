@@ -11,5 +11,6 @@ public class CompilerIntelligence {
         Apple a = (Apple) flist.get(0); // No warning
         flist.contains(new Apple()); // Argument is 'Object'
         flist.indexOf(new Apple()); // Argument is 'Object'
+
     }
 } ///:~

@@ -14,7 +14,7 @@ public class GenericWriting {
 
     static void f1() {
         writeExact(apples, new Apple());
-        // writeExact(fruit, new Apple()); // Error:
+         writeExact(fruit, new Apple());
         // Incompatible types: found Fruit, required Apple
     }
 
@@ -26,6 +26,7 @@ public class GenericWriting {
     static void f2() {
         writeWithWildcard(apples, new Apple());
         writeWithWildcard(fruit, new Apple());
+        writeWithWildcard(fruit, new Fruit());
     }
 
     public static void main(String[] args) {

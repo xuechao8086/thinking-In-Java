@@ -22,9 +22,9 @@ public class UnboundedWildcards2 {
     }
 
     public static void main(String[] args) {
-        assign1(new HashMap());
-        assign2(new HashMap());
-        // assign3(new HashMap()); // Warning:
+        assign1(new HashMap(1));
+        assign2(new HashMap(1));
+         assign3(new HashMap<>(1));
         // Unchecked conversion. Found: HashMap
         // Required: Map<String,?>
         assign1(new HashMap<String, Integer>());
