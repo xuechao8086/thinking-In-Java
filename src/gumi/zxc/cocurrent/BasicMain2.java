@@ -13,6 +13,7 @@ public class BasicMain2 {
     private static Random rand = new Random();
     private static long t = System.currentTimeMillis();
     static int getMoreData() {
+        System.out.println("threadName:" + Thread.currentThread().getName() + ",threadId:" + Thread.currentThread().getId());
         System.out.println("begin to start compute");
         try {
             Thread.sleep(10000);
@@ -23,6 +24,7 @@ public class BasicMain2 {
         return rand.nextInt(1000);
     }
     public static void main(String[] args) throws Exception {
+        System.out.println("threadName:" + Thread.currentThread().getName() + ",threadId:" + Thread.currentThread().getId());
         CompletableFuture<Integer> future = CompletableFuture.supplyAsync(BasicMain2::getMoreData);
         Future<Integer> f = future.whenComplete((v, e) -> {
             System.out.println(v);
