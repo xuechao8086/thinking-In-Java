@@ -3,9 +3,14 @@ package gumi.zxc.lambda;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
+
+import org.omg.CORBA.INTERNAL;
 
 /**
  * @see <a href="http://www.cnblogs.com/figure9/archive/2014/10/24/4048421.html">深入理解Java 8 Lambda（语言篇——lambda，方法引用，目标类型和默认方法）</a>
@@ -40,6 +45,21 @@ public class TestLambda {
 
 
     public static void main(String[] args) {
+        BiFunction<Integer, Integer, Integer> biFunction = (x, y) -> x+y;
+        BiFunction<Integer, Integer, Integer> biFunction1 = biFunction.andThen(z -> z*z);
+        Integer z1 = biFunction1.apply(1, 2);
+        System.out.println("Integer z1 = " + z1);
+
+        Comparator<Integer> comparator = (a, b) -> a - b;
+        Integer z2 = BinaryOperator.minBy(comparator).apply(5, 4);
+        System.out.println("Interger z2 = " + z2);
+
+        BinaryOperator<Integer> binaryOperator = (x, y) -> x+y;
+        BiFunction<Integer, Integer, Integer> biFunction2 = binaryOperator.andThen(z -> z*2);
+
+
+        //System.exit(0);
+
         TestLambda.runThreadUseInnerClass();
         TestLambda.runThreadUseInnerClass();
         TestLambda.runThreadUseLambda();
