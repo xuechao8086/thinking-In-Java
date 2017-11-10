@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Collectors.*;
 
 import org.eclipse.swt.widgets.DateTime;
 
@@ -95,8 +94,7 @@ public class TestStrean {
             .flatMap(mdp -> mdp.keyToData.entrySet().stream().map(e -> new Object() {
                     String key = e.getKey();
                     DataPoint dataPoint = new DataPoint(mdp.timestamp, e.getValue());
-                }
-                )
+                })
             )
             .collect(
                 Collectors.collectingAndThen(Collectors.groupingBy(t -> t.key,
@@ -111,11 +109,11 @@ public class TestStrean {
     }
 
     public static void main(String[] args) {
-        List<String> views = Arrays.asList("wsbs", "xafaswzx", "b8fw", "ad");
+        List<String> views = Arrays.asList("wsbs", "xafaswzx", "b8fw", "ad", "ce", "sina");
         Map<Integer, List<String>> res = views.stream().collect(Collectors.groupingBy(String::length));
         assert res.size() > 0;
 
-        Map<Integer, Object> res1 = views.stream().collect(
+        Map<Integer, Object> res0 = views.stream().collect(
             Collectors.groupingBy(String::length, Collectors.collectingAndThen(
                 Collectors.maxBy(Comparator.comparingInt(String::length)),
                 // 为转换函数，转换最终的数据
@@ -123,25 +121,30 @@ public class TestStrean {
                 )
             )
         );
+        assert res0.size() > 0;
 
-        views.stream().collect(
-            Collectors.groupingBy(String::length)
-        );
+
+        Map<Integer, String> res1 = views.stream()
+            .collect(Collectors.toMap(String::length, p -> p, (a, b) -> b));
         assert res1.size() > 0;
 
-        List<Set<String>> result =
-            views.stream()
-                .collect(
-                    Collectors.collectingAndThen(Collectors.groupingBy(
-                        String::length,
-                        Collectors.mapping(word -> word, Collectors.toSet())),
-                        m -> m.entrySet()
-                            .stream()
-                            .filter(e -> e.getValue().contains("b8fw"))
-                            .map(Map.Entry::getValue)
-                            .collect(Collectors.toList())
-                    )
-                );
+        Map<Integer, List<String>> res2 = views.stream().collect(
+            Collectors.groupingBy(String::length)
+        );
+        assert res2.size() > 0;
+
+        List<Set<String>> result = views.stream()
+            .collect(
+                Collectors.collectingAndThen(Collectors.groupingBy(
+                    String::length,
+                    Collectors.mapping(word -> word, Collectors.toSet())),
+                    m -> m.entrySet()
+                        .stream()
+                        .filter(e -> e.getValue().contains("b8fw"))
+                        .map(Map.Entry::getValue)
+                        .collect(Collectors.toList())
+                )
+            );
 
         assert result.size() > 0;
 
