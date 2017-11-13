@@ -4,14 +4,17 @@ package innerclasses; /* Added by Eclipse.py */
 
 public class DotThis {
     public static void main(String[] args) {
-//        DotThis dt = new DotThis();
-//
-//        Inner inner = dt.inner();
-//        inner.outer().f();
+        DotThis dt = new DotThis();
+
+        Inner inner1 = dt.inner();
+        inner1.outer().f();
 
         DotThis dotThis = new DotThis();
-        Inner inner = dotThis.new Inner();
-        inner.outer();
+        Inner inner2 = dotThis.new Inner();
+        inner2.outer();
+
+        // 必须是由实例来引用的
+        //Inner inner3 = DotThis.new Inner();
     }
 
     void f() {
