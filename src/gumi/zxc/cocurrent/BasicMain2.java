@@ -27,10 +27,11 @@ public class BasicMain2 {
         System.out.println("threadName:" + Thread.currentThread().getName() + ",threadId:" + Thread.currentThread().getId());
         CompletableFuture<Integer> future = CompletableFuture.supplyAsync(BasicMain2::getMoreData);
         Future<Integer> f = future.whenComplete((v, e) -> {
+            System.out.println("whenComplete threadName:" + Thread.currentThread().getName() + ",threadId:" + Thread.currentThread().getId());
             System.out.println(v);
             System.out.println(e);
         });
         System.out.println(f.get());
-        System.in.read();
+        //System.in.read();
     }
 }
