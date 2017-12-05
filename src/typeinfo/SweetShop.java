@@ -2,8 +2,6 @@
 package typeinfo; /* Added by Eclipse.py */
 // Examination of the way the class loader works.
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import java.lang.reflect.Method;
 
 import static net.mindview.util.Print.print;
@@ -44,6 +42,7 @@ class Cookie {
 
 public class SweetShop {
     public static void main(String[] args) {
+        Class<Boolean> c = Boolean.TYPE;
         String[] names = new String[] {"xuechaozhoa", "gumi.zcx"};
 
         try {

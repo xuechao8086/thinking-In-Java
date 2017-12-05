@@ -12,7 +12,7 @@ class MNA {
         }
 
         public class B {
-            void h() {
+            void  h() {
                 g();
                 f();
             }

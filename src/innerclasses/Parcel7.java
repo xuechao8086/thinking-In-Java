@@ -12,6 +12,7 @@ public class Parcel7 {
         return new Contents() { // Insert a class definition
             private int i = 11;
 
+            @Override
             public int value() {
                 return i;
             }

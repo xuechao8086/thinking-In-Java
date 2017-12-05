@@ -34,6 +34,8 @@ public class Beetle extends Insect {
     public static void main(String[] args) {
         print("Beetle constructor");
         Beetle b = new Beetle();
+        System.out.println("###################");
+        Beetle c = new Beetle();
     }
 } /* Output:
 static Insect.x1 initialized

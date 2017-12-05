@@ -14,18 +14,19 @@ class Window {
 
 class House {
     Window w1 = new Window(1); // Before constructor
-    Window w2 = new Window(2); // After constructor
-    Window w3 = new Window(3); // At end
+
 
     House() {
         // Show that we're in the constructor:
         print("House()");
         w3 = new Window(33); // Reinitialize w3
     }
-
+    Window w2 = new Window(2); // After constructor
     void f() {
         print("f()");
     }
+    Window w3 = new Window(3); // At end
+
 }
 
 public class OrderOfInitialization {

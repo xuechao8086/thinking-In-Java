@@ -10,6 +10,7 @@ public interface ClassInInterface {
             new Test().howdy();
         }
 
+        @Override
         public void howdy() {
             System.out.println("Howdy!");
         }

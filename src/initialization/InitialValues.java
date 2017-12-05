@@ -5,7 +5,7 @@ package initialization; /* Added by Eclipse.py */
 import static net.mindview.util.Print.print;
 
 public class InitialValues {
-    boolean t;
+    private boolean t;
     char c;
     byte b;
     short s;

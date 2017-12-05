@@ -11,6 +11,8 @@ public class Parcel8 {
     public Wrapping wrapping(int x) {
         // Base constructor call:
         return new Wrapping(x) { // Pass constructor argument.
+            
+            @Override
             public int value() {
                 return super.value() * 47;
             }

@@ -25,6 +25,7 @@ class RoundGlyph extends Glyph {
         print("RoundGlyph.RoundGlyph(), radius = " + radius);
     }
 
+    @Override
     void draw() {
         print("RoundGlyph.draw(), radius = " + radius);
     }

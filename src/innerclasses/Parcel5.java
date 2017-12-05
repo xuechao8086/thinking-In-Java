@@ -6,6 +6,7 @@ public class Parcel5 {
     public static void main(String[] args) {
         Parcel5 p = new Parcel5();
         Destination d = p.destination("Tasmania");
+        System.out.println("label: " + d.readLabel());
     }
 
     public Destination destination(String s) {
@@ -16,6 +17,7 @@ public class Parcel5 {
                 label = whereTo;
             }
 
+            @Override
             public String readLabel() {
                 return label;
             }

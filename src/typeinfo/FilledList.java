@@ -8,11 +8,12 @@ class CountedInteger {
     private static long counter;
     private final long id = counter++;
 
+    @Override
     public String toString() {
         return Long.toString(id);
     }
 
-    public CountedInteger() {
+    CountedInteger() {
         System.out.println("CountedInteger initialized");
     }
 }
@@ -27,12 +28,12 @@ public class FilledList<T> {
     public static void main(String[] args) {
         CountedInteger countedInteger = new CountedInteger();
         FilledList<CountedInteger> fl =
-                new FilledList<CountedInteger>(CountedInteger.class);
+                new FilledList<>(CountedInteger.class);
         System.out.println(fl.create(15));
     }
 
     public List<T> create(int nElements) {
-        List<T> result = new ArrayList<T>();
+        List<T> result = new ArrayList<>();
         try {
             for(int i = 0; i < nElements; i++) {
                 result.add(type.newInstance());

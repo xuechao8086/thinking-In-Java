@@ -19,6 +19,7 @@ public class Parcel11 {
     private static class ParcelContents implements Contents {
         private int i = 11;
 
+        @Override
         public int value() {
             return i;
         }
@@ -37,6 +38,7 @@ public class Parcel11 {
         public static void f() {
         }
 
+        @Override
         public String readLabel() {
             return label;
         }
