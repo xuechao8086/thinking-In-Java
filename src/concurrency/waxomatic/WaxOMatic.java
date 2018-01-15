@@ -24,14 +24,12 @@ class Car {
 
     public synchronized void waitForWaxing()
             throws InterruptedException {
-        while (waxOn == false)
-            wait();
+        while (!waxOn) {wait();}
     }
 
     public synchronized void waitForBuffing()
             throws InterruptedException {
-        while (waxOn == true)
-            wait();
+        while (waxOn) {wait();}
     }
 }
 
@@ -42,6 +40,7 @@ class WaxOn implements Runnable {
         car = c;
     }
 
+    @Override
     public void run() {
         try {
             while (!Thread.interrupted()) {
